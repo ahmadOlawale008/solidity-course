@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/AddingStorage.sol": "AddingStorage"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/AddingStorage.sol": {
+			"keccak256": "0xc878a4931a9b19dd4f53ede4674c59623126758ac0ded136a2882713659e45d6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6697bb83213d83adb9fa4b47a9ab07bffbf066454ad9e160bbb368b2fa50a601",
+				"dweb:/ipfs/QmWEkDm1QcjAsUdkjnZBEzKWFENYjS5Xuxu8bc4MDyoGvF"
+			]
+		}
+	},
+	"version": 1
+}
