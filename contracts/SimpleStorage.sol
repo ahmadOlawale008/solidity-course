@@ -15,7 +15,7 @@ contract SimpleStorage {
         string name;
     }
 
-    function store(uint256 _favNumber) public virtual  {
+    function store(uint256 _favNumber) public virtual  {    
         favNumber = _favNumber;
     }
     

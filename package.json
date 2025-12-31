@@ -1,0 +1,28 @@
+{
+  "name": "blockchain-and-solidity-projects",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec \"node --loader ts-node/esm\" --watch src --watch config src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "compile": "npx solcjs --bin --abi --include-path node_modules/ --base-path . -o . ./contracts/SimpleStorage.sol"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ethers": "^6.16.0",
+    "nodemon": "^3.1.11",
+    "solc": "^0.8.14-fixed"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
