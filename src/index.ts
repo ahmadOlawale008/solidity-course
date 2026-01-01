@@ -5,30 +5,42 @@ import { Wallet } from "ethers";
 import fs from "node:fs"
 import { ContractFactory } from "ethers";
 import type { TransactionRequest } from "ethers";
+
 dotenv.config()
 
 
 async function main() {
-  // https://127.0.0.1:7545 
-  const provider = new JsonRpcProvider("http://127.0.0.1:7545");
-  const wallet = new Wallet(process.env.GANACHE_PRIVATE_KEY || "", provider);
+
+  const provider = new JsonRpcProvider(process.env.RPC_URL);
+  // const encryptedKeyJson = fs.readFileSync("./encryptedKey.json", "utf8");
+  // const decryptedWallet =  Wallet.fromEncryptedJson(encryptedKeyJson, process.env.PRIVATE_KEY_PASSWORD!);
+  // const wallet = (await decryptedWallet).connect(provider)
+  const wallet = new Wallet(process.env.PRIVATE_KEY!, provider)
   const abiPath = "./contracts_SimpleStorage_sol_SimpleStorage.abi";
   const binPath = "./contracts_SimpleStorage_sol_SimpleStorage.bin";
 
   const abi = fs.readFileSync(abiPath, "utf8");
   const bin = fs.readFileSync(binPath, "utf8");
 
-  console.log(fs.existsSync(abiPath), fs.existsSync(binPath), wallet.address)
+  // console.log(fs.existsSync(abiPath), fs.existsSync(binPath), wallet.address)
   const contractFactory = new ContractFactory(abi, bin, wallet);
-  const contract: any = await contractFactory.deploy({
-    // gasPrice: 10,
-    // gasLimit: 20000,
-  })
-  
-  await contract.deploymentTransaction()?.wait(1);
 
-  const currentFavNumber = await contract.retrieve();
-  console.log(`Current fav number is: ${currentFavNumber.toString()}`)
+  const contract = await contractFactory.deploy({
+    //  gasPrice: 10,
+    //  gasLimit: 20000,
+  })
+
+  await contract.deploymentTransaction()?.wait(1);
+  const address = await contract.getAddress()
+  console.log(`Address is: ${address}`);
+
+  const currentFavNumber = await (contract as any).retrieve();
+  const transactionResponse = await (contract as any).store("7");
+  const transactionReceipt = await transactionResponse.wait(1);
+  const updatedFavNumber = await (contract as any).retrieve();
+
+  console.log(`Current fav number is: ${currentFavNumber.toString()}`);
+  console.log(`Current fav number is: ${updatedFavNumber.toString()}`);
 
 
 

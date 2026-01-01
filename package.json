@@ -18,6 +18,8 @@
     "dotenv": "^17.2.3",
     "ethers": "^6.16.0",
     "nodemon": "^3.1.11",
+    "prettier": "^3.7.4",
+    "prettier-plugin-solidity": "^2.2.1",
     "solc": "^0.8.14-fixed"
   },
   "devDependencies": {
